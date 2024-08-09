@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-<<<<<<< HEAD
-=======
 import Link from 'next/link';
->>>>>>> d48097e (resolved merge conflicts)
 
 const SignUp = () => {
   const router = useRouter();
@@ -32,31 +29,19 @@ const SignUp = () => {
     e.preventDefault();
     localStorage.setItem('email', formData.email);
 
-<<<<<<< HEAD
-=======
     // Validate the form data
->>>>>>> d48097e (resolved merge conflicts)
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
     try {
-<<<<<<< HEAD
-=======
       // Send signup data to the server
->>>>>>> d48097e (resolved merge conflicts)
       const signupResponse = await axios.post('https://akil-backend.onrender.com/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword,
-<<<<<<< HEAD
-        role: formData.role || 'user'
-      });
-
-      if (signupResponse.status === 200 && signupResponse.data.success) {
-=======
         role: formData.role || 'user' // Assuming 'user' is the default role if none is provided
       });
 
@@ -65,28 +50,20 @@ const SignUp = () => {
       // Check if the signup was successful
       if (signupResponse.status === 200 && signupResponse.data.success) {
         // Send verification code
->>>>>>> d48097e (resolved merge conflicts)
         const verificationResponse = await axios.post('https://akil-backend.onrender.com/verify-email', {
           email: formData.email
         });
 
-<<<<<<< HEAD
-        window.location.href = '/component/verification';
-=======
         console.log('Verification response:', verificationResponse.data);
 
         // Redirect to the verification page
         // window.location.href = '/component/verification';
->>>>>>> d48097e (resolved merge conflicts)
       } else {
         setError('Signup failed. Please try again.');
       }
     } catch (error) {
-<<<<<<< HEAD
-=======
       console.log(error, 12, formData);
       // router.push('/component/verification');
->>>>>>> d48097e (resolved merge conflicts)
       console.error('There was an error:', error.response ? error.response.data : error.message);
       setError(error.response ? error.response.data.message : 'Signup failed. Please try again.');
     }
@@ -94,11 +71,7 @@ const SignUp = () => {
 
   // Handle Google Sign-In
   const handleGoogleSignIn = () => {
-<<<<<<< HEAD
-    signIn('google', { callbackUrl: '/component/verification' });
-=======
-    signIn('google', { callbackUrl: 'http://localhost:3000/HomePage' });
->>>>>>> d48097e (resolved merge conflicts)
+    signIn('google', { callbackUrl: 'http://localhost:3000' });
   };
 
   return (
@@ -212,13 +185,9 @@ const SignUp = () => {
 
           <div className="text-center mt-4">
             <span className="text-gray-700">Already have an account? </span>
-<<<<<<< HEAD
-            <a href="#" className="text-blue-500 font-bold">Login</a>
-=======
             <Link href = 'http://localhost:3000'>
             <p className="text-blue-500 font-bold">Login</p>
             </Link>
->>>>>>> d48097e (resolved merge conflicts)
           </div>
 
           <div className="text-center mt-4 text-sm text-gray-500">

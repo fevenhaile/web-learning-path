@@ -25,19 +25,11 @@ const HomePage = () => {
     fetchJobs();
   }, []);
 
-<<<<<<< HEAD
   const handleLogout = async () => {
     try {
       await signOut(); // Call signOut from next-auth
       localStorage.removeItem('userToken'); // Clear the session token
       router.push('/Login'); // Redirect to the login page
-=======
-  const handleLogout =  () => {
-    try {
-      // Call signOut from next-auth
-      localStorage.removeItem('userToken'); // Clear the session token
-      router.push('http://localhost:3000'); // Redirect to the login page
->>>>>>> d48097e (resolved merge conflicts)
     } catch (error) {
       console.error('Error during logout:', error);
     }

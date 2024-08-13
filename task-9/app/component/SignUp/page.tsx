@@ -61,13 +61,22 @@ const SignUp = () => {
       } else {
         setError('Signup failed. Please try again.');
       }
-    } catch (error) {
-      console.log(error, 12, formData);
-      // router.push('/component/verification');
-      console.error('There was an error:', error.response ? error.response.data : error.message);
-      setError(error.response ? error.response.data.message : 'Signup failed. Please try again.');
-    }
-  };
+    } catch (error ) {
+        if (axios.isAxiosError(error)) {
+          // Handle Axios-specific errors
+          console.error('There was an error:', error.response ? error.response.data : error.message);
+          setError(error.response ? error.response.data.message : 'Signup failed. Please try again.');
+        } else if (error instanceof Error) {
+          // Handle general errors
+          console.error('There was an error:', error.message);
+          setError('Signup failed. Please try again.');
+        } else {
+          // Handle unknown error types
+          console.error('An unknown error occurred');
+          setError('Signup failed. Please try again.');
+        }
+      }
+    };
 
   // Handle Google Sign-In
   const handleGoogleSignIn = () => {
